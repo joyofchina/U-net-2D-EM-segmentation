@@ -4,7 +4,7 @@ using keras
 
 aim to ISBI Challenge: Segmentation of neuronal structures in EM stacks,http://brainiac2.mit.edu/isbi_challenge/ 
 
-you can download the data from the website or find data in the data folder\<br>
+you can download the data from the website or find data in the data folder
 
 Pre-processing
 ---

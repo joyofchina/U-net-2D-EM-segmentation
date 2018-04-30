@@ -4,21 +4,18 @@ import os
 import glob
 #import cv2
 #from libtiff import TIFF
-
+"""
 class myAugmentation(object):
 	
-	"""
+	
 	A class used to augmentate image
 	Firstly, read train image and label seperately, and then merge them together for the next process
 	Secondly, use keras preprocessing to augmentate image
 	Finally, seperate augmentated image apart into train image and label
-	"""
+	
 
 	def __init__(self, train_path="train", label_path="label", merge_path="merge", aug_merge_path="aug_merge", aug_train_path="aug_train", aug_label_path="aug_label", img_type="tif"):
 		
-		"""
-		Using glob to get all .img_type form path
-		"""
 
 		self.train_imgs = glob.glob(train_path+"/*."+img_type)
 		self.label_imgs = glob.glob(label_path+"/*."+img_type)
@@ -41,9 +38,6 @@ class myAugmentation(object):
 
 	def Augmentation(self):
 
-		"""
-		Start augmentation.....
-		"""
 		trains = self.train_imgs
 		labels = self.label_imgs
 		path_train = self.train_path
@@ -73,7 +67,7 @@ class myAugmentation(object):
 	def doAugmentate(self, img, save_to_dir, save_prefix, batch_size=1, save_format='tif', imgnum=30):
 
 		"""
-		augmentate one image
+		#augmentate one image
 		"""
 		datagen = self.datagen
 		i = 0
@@ -89,7 +83,7 @@ class myAugmentation(object):
 	def splitMerge(self):
 
 		"""
-		split merged image apart
+		#split merged image apart
 		"""
 		path_merge = self.aug_merge_path
 		path_train = self.aug_train_path
@@ -114,7 +108,7 @@ class myAugmentation(object):
 	def splitTransform(self):
 
 		"""
-		split perspective transform images
+		#split perspective transform images
 		"""
 		#path_merge = "transform"
 		#path_train = "transform/data/"
@@ -131,11 +125,11 @@ class myAugmentation(object):
 			cv2.imwrite(path_train+midname+"."+self.img_type,img_train)
 			cv2.imwrite(path_label+midname+"."+self.img_type,img_label)
 
-
+"""
 
 class dataProcess(object):
 
-	def __init__(self, out_rows, out_cols, data_path = "./deform/train", label_path = "./deform/label", test_path = "./deform/test", npy_path = "./deform/npydata", img_type = "tif"):
+	def __init__(self, out_rows, out_cols, data_path = "./train", label_path = "./label", test_path = "./test", npy_path = "./npydata", img_type = "tif"):
 
 		"""
 		
@@ -234,5 +228,4 @@ if __name__ == "__main__":
 	mydata = dataProcess(512,512)
 	mydata.create_train_data()
 	mydata.create_test_data()
-	#imgs_train,imgs_mask_train = mydata.load_train_data()
-	#print imgs_train.shape,imgs_mask_train.shape
+	

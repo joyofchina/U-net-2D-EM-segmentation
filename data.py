@@ -4,15 +4,15 @@ import os
 import glob
 #import cv2
 #from libtiff import TIFF
-"""
+
 class myAugmentation(object):
 	
-	
+	"""
 	A class used to augmentate image
 	Firstly, read train image and label seperately, and then merge them together for the next process
 	Secondly, use keras preprocessing to augmentate image
 	Finally, seperate augmentated image apart into train image and label
-	
+	"""
 
 	def __init__(self, train_path="train", label_path="label", merge_path="merge", aug_merge_path="aug_merge", aug_train_path="aug_train", aug_label_path="aug_label", img_type="tif"):
 		
@@ -66,9 +66,9 @@ class myAugmentation(object):
 
 	def doAugmentate(self, img, save_to_dir, save_prefix, batch_size=1, save_format='tif', imgnum=30):
 
-		"""
+		
 		#augmentate one image
-		"""
+		
 		datagen = self.datagen
 		i = 0
 		for batch in datagen.flow(img,
@@ -79,12 +79,6 @@ class myAugmentation(object):
 		    i += 1
 		    if i > imgnum:
 		        break
-
-	def splitMerge(self):
-
-		"""
-		#split merged image apart
-		"""
 		path_merge = self.aug_merge_path
 		path_train = self.aug_train_path
 		path_label = self.aug_label_path
@@ -125,7 +119,6 @@ class myAugmentation(object):
 			cv2.imwrite(path_train+midname+"."+self.img_type,img_train)
 			cv2.imwrite(path_label+midname+"."+self.img_type,img_label)
 
-"""
 
 class dataProcess(object):
 
@@ -221,10 +214,10 @@ class dataProcess(object):
 
 if __name__ == "__main__":
 
-	#aug = myAugmentation()
-	#aug.Augmentation()
-	#aug.splitMerge()
-	#aug.splitTransform()
+	aug = myAugmentation()
+	aug.Augmentation()
+	aug.splitMerge()
+	aug.splitTransform()
 	mydata = dataProcess(512,512)
 	mydata.create_train_data()
 	mydata.create_test_data()

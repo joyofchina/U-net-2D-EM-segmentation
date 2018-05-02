@@ -36,7 +36,7 @@ def augmentation():
 		img = img.reshape((1,) + img.shape)
         # here's a more "manual" example
         batches = 0
-        for batch in datagen.flow(img, batch_size=1,save_to_dir='./results/aug',save_format='tif'):
+        for batch in datagen.flow(img, batch_size=1,save_to_dir='./results/aug',save_prefix=str(i),save_format='tif'):
             batches += 1
             if batches >= 30:
             # we need to break the loop by hand because

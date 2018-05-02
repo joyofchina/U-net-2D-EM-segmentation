@@ -1,6 +1,6 @@
 import os
 import glob
-from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img,save_img
+from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img,array_to_img
     
 def augmentation(path_aug='./results/aug'):
     
@@ -47,8 +47,10 @@ def augmentation(path_aug='./results/aug'):
         img =load_img(imgname)
         img_train = img[:,:,0]
         img_label = img[:,:,2]
-        save_img(path_aug+"/train/"+str(i)+".tif",img_train)
-        save_img(path_aug+"/label/"+str(i)+".tif",img_label)
+        img_train = array_to_img(img_train)
+	img_label = array_to_img(img_label)
+	img_train.save(path_aug+"/train/"+str(i)+".tif")
+        img_label.save(path_aug+"/label/"+str(i)+".tif")
         i+=1
 	
 if __name__ == "__main__":

@@ -13,27 +13,25 @@ however without data augmentation we can still get a good result.<br>
 You should first run the data.py,then the unet.py<br>
 remember to change the file location in both files and create a folder called results under this folder.<br>
 
-unet/
-    train/
-        0.tif
-        1.tif
-        ...
-    label/
-        0.tif
-        1.tif
-        ...
-    results/
-        #for augmentation and segmentation
-        aug/
-           train/
+unet/<br>
+    train/<br>
+        0.tif<br>
+        1.tif<br>
+        ...<br>
+    label/<br>
+        0.tif<br>
+        1.tif<br>
+        ...<br>
+    results/<br>
+        #for augmentation and segmentation<br>
+        aug/<br>
+           train/<br>
            0.tif
            1.tif
            ...
-           label/
+           label/<br>
            0.tif
            1.tif
-           ...
-        seg/
-           0.tif
-           1.tif
+           ...<br>
+        image.npy
            

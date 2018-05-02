@@ -48,8 +48,8 @@ def augmentation(path_aug='./results/aug'):
         img_train = img[:,:,0]
         img_label = img[:,:,2]
         img_train = array_to_img(img_train)
-	img_label = array_to_img(img_label)
-	img_train.save(path_aug+"/train/"+str(i)+".tif")
+        img_label = array_to_img(img_label)
+        img_train.save(path_aug+"/train/"+str(i)+".tif")
         img_label.save(path_aug+"/label/"+str(i)+".tif")
         i+=1
 	

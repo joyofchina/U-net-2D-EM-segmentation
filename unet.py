@@ -4,7 +4,7 @@ from keras.models import *
 from keras.layers import Input, merge, Conv2D, MaxPooling2D, UpSampling2D, Dropout, Cropping2D
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
-from keras.preprocessing.image import save_img
+from keras.preprocessing.image import array_to_img
 from data import *
 
 class myUnet(object):
@@ -106,7 +106,8 @@ class myUnet(object):
 		imgs = np.load(self.save_path+"imgs_mask_test.npy")
 		for i in range(imgs.shape[0]):
 			img = imgs[i]
-			save_img("./results/seg/"+ str(i)+".jpg",img)
+			img = array_to_img(img)
+			img.save("./results/seg/"+ str(i)+".jpg")
 			
 
 

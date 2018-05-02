@@ -1,6 +1,5 @@
-from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
+from keras.preprocessing.image import img_to_array, load_img
 import numpy as np 
-import os
 import glob
 #import cv2
 #from libtiff import TIFF
@@ -40,7 +39,7 @@ class dataProcess(object):
 				print('Done: {0}/{1} images'.format(i, len(imgs)+len(augimgs)))
 			i += 1
 		for imgname in augimgs:
-			midname = augimgname[imgname.rindex("/")+1:]
+			midname = imgname[imgname.rindex("/")+1:]
 			img = load_img(self.aug_path + "/train/" + midname,grayscale = True)
 			label = load_img(self.aug_path + "/label/" + midname,grayscale = True)
 			img = img_to_array(img)

@@ -1,5 +1,6 @@
 import os
 import glob
+import numpy as np
 from keras.preprocessing.image import ImageDataGenerator, img_to_array, load_img,array_to_img
     
 def augmentation(path_aug='./results/aug'):
@@ -21,12 +22,13 @@ def augmentation(path_aug='./results/aug'):
     print('Using real-time data augmentation.')
     #one by one augmentation
     for i in range(slices):
-        img_t = load_img(train_path+"/"+str(i)+".tif",grayscale=True,)
-        img_l = load_img(label_path+"/"+str(i)+".tif",grayscale=True,)
+        img_t = load_img(train_path+"/"+str(i)+".tif",grayscale=True)
+        img_l = load_img(label_path+"/"+str(i)+".tif",grayscale=True)
         x_t = img_to_array(img_t)
         x_l = img_to_array(img_l)
-        x_t[:,:,2] = x_l[:,:,0]#channel last
-        img = x_t
+        img = np.zeros([np.shape(x_t)[:2],3])
+        img[:,:,0]=x_t
+        img[:,:,2]=x_l
         	# here's a more "manual" example
         batches = 0
         for batch in datagen.flow(img, batch_size=1,save_to_dir=path_aug,save_prefix=str(i),save_format='tif'):

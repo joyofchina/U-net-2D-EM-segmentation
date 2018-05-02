@@ -6,8 +6,8 @@ from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_a
     
 def augmentation():
     #read images
-    train_path="./train"
-    label_path="./label"
+    train_path="./data/train"
+    label_path="./data/label"
     img_type="tif"
     train_imgs = glob.glob(train_path+"/*."+img_type)
 	label_imgs = glob.glob(label_path+"/*."+img_type)

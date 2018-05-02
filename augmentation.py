@@ -26,7 +26,8 @@ def augmentation(path_aug='./results/aug'):
         img_l = load_img(label_path+"/"+str(i)+".tif",grayscale=True)
         x_t = img_to_array(img_t)
         x_l = img_to_array(img_l)
-        img = np.zeros([np.shape(x_t)[:2],3])
+        s=np.shape(x_t)
+        img = np.zeros((s[0],s[1],3))
         img[:,:,0]=x_t
         img[:,:,2]=x_l
         	# here's a more "manual" example

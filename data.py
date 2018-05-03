@@ -15,6 +15,7 @@ class dataProcess(object):
 		self.img_type = img_type
 		self.test_path = test_path
 		self.npy_path = npy_path
+		self.aug_path= aug_path
 
 	def create_train_data(self):
 		i = 0

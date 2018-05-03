@@ -1,20 +1,19 @@
-import os 
 #os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 import numpy as np
 from keras.models import *
 from keras.layers import Input, merge, Conv2D, MaxPooling2D, UpSampling2D, Dropout, Cropping2D
 from keras.optimizers import *
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler
-from keras import backend as keras
+from keras.preprocessing.image import array_to_img
 from data import *
 
 class myUnet(object):
 
-	def __init__(self, img_rows = 512, img_cols = 512):
+	def __init__(self, img_rows = 512, img_cols = 512,save_path="./results/"):
 
 		self.img_rows = img_rows
 		self.img_cols = img_cols
-
+		self.save_path = save_path
 	def load_data(self):
 
 		mydata = dataProcess(self.img_rows, self.img_cols)
@@ -99,16 +98,17 @@ class myUnet(object):
 
 		print('predict test data')
 		imgs_mask_test = model.predict(imgs_test, batch_size=4, verbose=1)
-		np.save('./results/imgs_mask_test.npy', imgs_mask_test)
+		np.save(self.save_path+ "imgs_mask_test.npy", imgs_mask_test)
 
-	def save_img(self):
+	def saveimg(self):
 
 		print("array to image")
-		imgs = np.load('./results/imgs_mask_test.npy')
+		imgs = np.load(self.save_path+"imgs_mask_test.npy")
 		for i in range(imgs.shape[0]):
 			img = imgs[i]
 			img = array_to_img(img)
-			img.save("./results/%d.jpg"%(i))
+			img.save("./results/seg/"+ str(i)+".jpg")
+			
 
 
 
@@ -116,7 +116,7 @@ class myUnet(object):
 if __name__ == '__main__':
 	myunet = myUnet()
 	myunet.train()
-	myunet.save_img()
+	myunet.saveimg()
 
 
 

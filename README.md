@@ -40,8 +40,8 @@ unet/
            ...
         image.npy
         seg/#results for the images in the test folder
-           0.tif
-           1.tif
+           0.jpg
+           1.jpg
            ...
 ```
          

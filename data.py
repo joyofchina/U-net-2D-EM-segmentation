@@ -1,4 +1,4 @@
-from keras.preprocessing.image import img_to_array, load_img
+from keras.preprocessing.image import img_to_array, load_img,array_to_img
 import numpy as np 
 import glob
 #import cv2
@@ -6,7 +6,7 @@ import glob
 
 class dataProcess(object):
 
-	def __init__(self, out_rows, out_cols, data_path = "./data/train", label_path = "./data/label", test_path = "./test",aug_path = "./results/aug", npy_path = "./results", img_type = "tif"):
+	def __init__(self, out_rows, out_cols, data_path = "./data/train", label_path = "./data/label", test_path = "./data/test",aug_path = "./results/aug", npy_path = "./results", img_type = "tif"):
 
 		self.out_rows = out_rows
 		self.out_cols = out_cols
@@ -56,21 +56,20 @@ class dataProcess(object):
 		print('Saving to .npy files done.')
 
 	def create_test_data(self):
-		i = 0
 		print('-'*30)
 		print('Creating test images...')
 		print('-'*30)
 		imgs = glob.glob(self.test_path+"/*."+self.img_type)
 		print(len(imgs))
 		imgdatas = np.ndarray((len(imgs),self.out_rows,self.out_cols,1), dtype=np.uint8)
-		for imgname in imgs:
-			midname = imgname[imgname.rindex("/")+1:]
-			img = load_img(self.test_path + "/" + midname,grayscale = True)
+		for ind in range(len(imgs)):
+			
+			img = load_img(self.test_path + "/" +str(ind)+".tif",grayscale = True)
 			img = img_to_array(img)
 			#img = cv2.imread(self.test_path + "/" + midname,cv2.IMREAD_GRAYSCALE)
 			#img = np.array([img])
-			imgdatas[i] = img
-			i += 1
+			imgdatas[ind] = img
+			ind += 1
 		print('loading done')
 		np.save(self.npy_path + '/imgs_test.npy', imgdatas)
 		print('Saving to imgs_test.npy files done.')

@@ -5,8 +5,6 @@ import glob
 #from libtiff import TIFF
 
 class dataProcess(object):
-
-<<<<<<< HEAD
 	def __init__(self, out_rows, out_cols, data_path = "./data/train", label_path = "./data/label", test_path = "./data/test",aug_path = "./results/aug", npy_path = "./results", img_type = "tif"):
 
 		self.out_rows = out_rows

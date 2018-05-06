@@ -45,7 +45,6 @@ class myUnet(object):
 		conv3 = Conv2D(256, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv3)
 		
 		pool3 = MaxPooling2D(pool_size=(2, 2))(conv3)
-		
 
 		conv4 = Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(pool3)
 		conv4 = Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv4)
@@ -57,6 +56,7 @@ class myUnet(object):
 		drop5 = Dropout(0.5)(conv5)
 
 		up6 = Conv2D(512, 2, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(UpSampling2D(size = (2,2))(drop5))
+
 		merge6 = concatenate([drop4,up6],axis = 3)
 		conv6 = Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(merge6)
 		conv6 = Conv2D(512, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv6)
